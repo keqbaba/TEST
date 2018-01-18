@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>登录 - 知乎 - Thousands Find</title>
+	<link rel="stylesheet" type="text/css" href="css/register-login.css">
+	<link rel="stylesheet" href="js/layer/skin/layer.css">
+</head>
+<body onload="createCode()">
+
+<i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">&#xe60c;</i>
+<div id="box"></div>
+<div class="cent-box">
+	<div class="cent-box-header">
+		<h1 class="main-title hide">知乎</h1>
+		<h2 class="sub-title">生活热爱分享 - Thousands Find</h2>
+	</div>
+
+	<div class="cont-main clearfix">
+		<div class="index-tab">
+			<div class="index-slide-nav">
+				<a href="login.html" class="active">登录</a>
+				<a href="register.html">注册</a>
+				<div class="slide-bar"></div>				
+			</div>
+		</div>
+
+		<div class="login form">
+			<div class="group">
+				<div class="group-ipt email">
+					<input type="text" name="email" id="email" class="ipt" placeholder="邮箱地址" required>
+				</div>
+				<div class="group-ipt password">
+					<input type="password" name="password" id="password" class="ipt" placeholder="输入您的登录密码" required>
+				</div>
+				<div class="group-ipt verify">
+					<table>
+						<tr>
+							<td>
+								<input type="text" name="verify" id="inputCode" class="ipt" placeholder="输入验证码" required>
+							</td>
+							<td>
+								<div class="code" id="checkCode" onclick="createCode()" />
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="button">
+			<button type="submit" class="login-btn register-btn" id="button" onclick="javascript:window.location.href='index.html'">登录</button>
+		</div>
+
+		<div class="remember clearfix">
+			<label class="remember-me"><span class="icon"><span class="zt"></span></span><input type="checkbox" name="remember-me" id="remember-me" class="remember-mecheck" checked>记住我</label>
+			<label class="forgot-password">
+				<a href="#">忘记密码？</a>
+			</label>
+		</div>
+	</div>
+</div>
+
+<div class="footer">
+	<p>知乎 - Thousands Find</p>
+	<p>Designed By ZengRong & <a href="zrong.me">mycodes.net</a> 2016</p>
+</div>
+
+<script src='js/particles.js' type="text/javascript"></script>
+<script src='js/background.js' type="text/javascript"></script>
+<script src='js/jquery.min.js' type="text/javascript"></script>
+<script src='js/layer/layer.js' type="text/javascript"></script>
+<script src='js/index.js' type="text/javascript"></script>
+<script>
+	$("#remember-me").click(function(){
+		var n = document.getElementById("remember-me").checked;
+		if(n){
+			$(".zt").show();
+		}else{
+			$(".zt").hide();
+		}
+	});
+</script>
+<style type="text/css">
+	.code
+	{
+		background:url(img/yzmbg.jpg);
+		font-family:Arial;
+		font-style:italic;
+		color:blue;
+		font-size:30px;
+		border:0;
+		padding:2px 3px;
+		letter-spacing:3px;
+		font-weight:bolder;
+		float:left;
+		cursor:pointer;
+		width:124px;
+		height:44.66px;
+		line-height:60px;
+		text-align:center;
+		vertical-align:middle;
+	}
+	a
+	{
+		text-decoration:none;
+		font-size:12px;
+		color:#288bc4;
+	}
+	a:hover
+	{
+		text-decoration:underline;
+	}
+</style>
+<script type="text/javascript">
+    var code;
+    function createCode()
+    {
+        code = "";
+        var codeLength = 4; //验证码的长度
+        var checkCode = document.getElementById("checkCode");
+        var codeChars = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+            'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'); //所有候选组成验证码的字符，当然也可以用中文的
+        for(var i = 0; i < codeLength; i++)
+        {
+            var charNum = Math.floor(Math.random() * 52);
+            code += codeChars[charNum];
+        }
+        if(checkCode)
+        {
+            checkCode.className = "code";
+            checkCode.innerHTML = code;
+        }
+    }
+    function validateCode()
+    {
+        var inputCode=document.getElementById("inputCode").value;
+        if(inputCode.length <= 0)
+        {
+            alert("请输入验证码！");
+        }
+        else if(inputCode.toUpperCase() != code.toUpperCase())
+        {
+            alert("验证码输入有误！");
+            createCode();
+        }
+        else
+        {
+            alert("验证码正确！");
+        }
+    }
+</script>
+</body>
+</html>
