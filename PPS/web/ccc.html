@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="layui/css/layui.css" rel="stylesheet" />
+</head>
+<body style="background-color:#eee;">
+<div style="width:90%;margin-left:5%;margin-top:100px;background-color:#fff;">
+    <textarea id="txt" style="display:none;"></textarea>
+</div>
+<input type="button" value="获取内容" id="btn1" class="layui-btn" style="margin-left:5%;margin-top:20px;" />
+</body>
+</html>
+<script src="layui/layui.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        layui.use('layedit', function () {
+            var layedit = layui.layedit;
+
+            layedit.set({
+                uploadImage: {
+                    url: 'server/editimgup.ashx' //接口url
+                    , type: 'post' //默认post
+                }
+            });
+
+            var editIndex = layedit.build('txt', {
+                height: 400
+            });
+
+            document.getElementById('btn1').onclick = function () {
+                alert(layedit.getContent(editIndex));
+            }
+        });
+    }
+</script>
